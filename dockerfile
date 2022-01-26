@@ -1,5 +1,5 @@
 FROM nginx:alpine
-WORKDIR /app
+WORKDIR /app 
 ADD . /app
-CMD /app/index.html
+CMD ["/bin/sh","/app/index.html"]
 LABEL color=red
