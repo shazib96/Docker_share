@@ -16,6 +16,9 @@ pipeline {
             steps {
                 sh 'echo Creating application Package'
             }
+            steps {
+                sh git credentialsId: 'e628b384-d57e-44bf-8cce-273aa79e893d', url: 'https://github.com/shazib96/Docker_share.git'
+            }
         }
         stage('Delivery') {
             steps {
@@ -28,10 +31,5 @@ pipeline {
             }
         }
     }
-        post {
-        always {
-            emailext body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'],
-             [$class: 'RequesterRecipientProvider']], subject: 'Test'
-        }
-    }
+        
 }
