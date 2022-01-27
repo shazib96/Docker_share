@@ -16,9 +16,6 @@ pipeline {
             steps {
                 sh 'echo Creating application Package'
             }
-            steps {
-                sh 'https://github.com/shazib96/Docker_share.git'
-            }
         }
         stage('Delivery') {
             steps {
