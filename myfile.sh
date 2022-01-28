@@ -2,7 +2,7 @@
 
 
 echo "cloning a docker-share repo"
-sudo git clone https://github.com/shazib96/Docker_share.git
+git clone https://github.com/shazib96/Docker_share.git
 DIR=docker-share/Dockerfile
 container_name=helloworld
 
