@@ -9,6 +9,7 @@ echo "something"
 if [ -f "Dockerfile" ]
 then
 printf "%s\n" "Dockerfile exist"
+fi
 #result=$( sudo docker images -q helloworld )
 #else
 #echo "No dockerfile found"
