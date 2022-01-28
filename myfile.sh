@@ -1,10 +1,9 @@
 #!/usr/bin/bash
 
-
-username="shazib96"
-password="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"
+#username="shazib96"
+#password="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"
 echo "cloning a docker-share repo"
-sudo git clone https://"$username":"$password"@github.com/shazib96/Docker_share.git
+sudo git clone https://github.com/shazib96/Docker_share.git
 DIR=docker-share/Dockerfile
 container_name=helloworld
 
