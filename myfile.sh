@@ -6,9 +6,9 @@ echo "something"
 #DIR=docker-share/Dockerfile
 #"""container_name=helloworld
 
-#if [ -f "Dockerfile" ]
-#then
-#printf '%s\n' "Dockerfile exist"
+if [ -f "Dockerfile" ]
+then
+printf '%s\n' "Dockerfile exist"
 #result=$( sudo docker images -q helloworld )
 #else
 #echo "No dockerfile found"
