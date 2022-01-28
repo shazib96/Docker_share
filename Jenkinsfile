@@ -24,7 +24,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'echo Deploying the Application'
+                sh './myfile.sh'
             }
         }
     }
