@@ -1,14 +1,14 @@
 #!/usr/bin/bash
 
 
-echo "cloning a docker-share repo"
-git clone https://github.com/shazib96/Docker_share.git
-DIR=docker-share/Dockerfile
+#echo "cloning a docker-share repo"
+#git clone https://github.com/shazib96/Docker_share.git
+#DIR=docker-share/Dockerfile
 container_name=helloworld
 
-if [ -f "$DIR" ]
+if [ -f "Dockerfile" ]
 then
-printf '%s\n' "Dockerfile ($DIR)"
+printf '%s\n' "Dockerfile exist"
 result=$( sudo docker images -q helloworld )
 else
 echo "No dockerfile found"
