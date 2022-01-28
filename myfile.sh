@@ -9,7 +9,7 @@ container_name=helloworld
 if [ -f "$DIR" ]
 then
 printf '%s\n' "Dockerfile ($DIR)"
-result=$( sudo docker images -q helloworld 
+result=$( sudo docker images -q helloworld )
 else
 echo "No dockerfile found"
 fi
