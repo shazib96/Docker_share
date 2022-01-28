@@ -22,10 +22,10 @@ fi
 
 if [[ -n "$result" ]]; then
 echo "image exists"
-#sudo docker rmi -f helloworld
-#else
-#echo "Image not exist"
-#fi
+sudo docker rmi -f helloworld
+else
+echo "Image not exist"
+fi
 
 #echo "build the docker image"
 #sudo docker build -t helloworld/shazib:0.1 .  
