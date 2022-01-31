@@ -1,26 +1,34 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 echo "something"
-#echo "cloning a docker-share repo"
-#git clone https://github.com/shazib96/Docker_share.git
-#DIR=docker-share/Dockerfile
-#"""container_name=helloworld
+echo "cloning a docker-share repo"
+git clone https://github.com/shazib96/Docker_share.git
+DIR=docker-share/Dockerfile
+container_name=helloworld
 
-if [ -f "Dockerfile" ]
+sudo docker images -q
+	if ["$?" -eq 0]
+	echo "Image exist"
+	else
+	echo "Image not exist"
+if [ -e "$Dir" ]
 then
 printf "%s\n" "Dockerfile exist"
 result=$(sudo docker images -q helloworld )
+sudo docker inspect images > /dev/null 2>&1
 else
 echo "No dockerfile found"
 fi
-#contain=$(sudo docker ps -q )
-#if [[ "$?" -eq 0 ]]; then
-#echo "Container exist"
-#sudo docker rm -f helloworld
-#else
-#echo "Container not exist"
+contain=$(sudo docker ps -q )
+	if [ "$?" -eq 0 ]
+	then
+	echo "Container exist"
+	sudo docker rm -f helloworld
+	else
+	echo "Container not exist"
 
-if [[ -n "$result" ]]; then
+if [ -n "$result" ]
+then
 echo "image exists"
 sudo docker rmi -f helloworld
 else
