@@ -32,7 +32,7 @@ pipeline {
                 sh './image.sh'
             }
         }
-    }
+     }
      post {
         always {
             cleanWs()   
