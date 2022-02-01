@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh './myfile.sh'
+                sh './image.sh'
             }
         }
     }
