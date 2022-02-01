@@ -14,11 +14,11 @@ WORKDIR=/app
 
 IMAGE_ID=$(sudo docker images -q "${APP_NAME}")
 
-if [-e "$FILE"]
+if [-e $FILE]
 then
 	echo"Dockerfile exist"
 fi
-if [-z "$IMAGE_ID"]
+if [-z $IMAGE_ID]
 then
     echo "Create Image from {$IMAGE_NAME}"
     sudo docker build "${FILE}" -t $IMAGE_NAME .
@@ -26,7 +26,7 @@ fi
 
 # Get container ID and state of the Docker image
 CONTAINER_ID=$(sudo docker ps -q -a -f name="${APP_NAME}")
-if [-z "$CONTAINER_ID"]
+if [-z $CONTAINER_ID]
     then CONTAINER_STATUS=false
     else CONTAINER_STATUS=$(docker inspect -f {{.State.Running}} $CONTAINER_ID)
 fi    
