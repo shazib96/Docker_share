@@ -38,7 +38,7 @@ else
 fi
 
 if [ -z "$CONTAINER_ID" ]; then
-    sudo docker run -it --rm --name=$APP_NAME -p "${PORT}" -network default -v .:"${WORKDIR}" -w "${WORKDIR}" $IMAGE_NAME $ARG
+    sudo docker run -it --rm --name=$APP_NAME -p "${PORT}" -network default -v '.':"${WORKDIR}" -w "${WORKDIR}" $IMAGE_NAME $ARG
 else
     if [ CONTAINER_STATUS == "true" ]; then
         sudo docker exec -it $CONTAINER_ID $ARG
