@@ -14,40 +14,36 @@ WORKDIR=/app
 
 IMAGE_ID=$(sudo docker images -q "${APP_NAME}")
 
-if [-e $FILE]
-then
-	echo"Dockerfile exist"
+if [-e "$FILE"]; then
+    echo"Dockerfile exist"
 fi
-if [-z $IMAGE_ID]
-then
+if [-z "$IMAGE_ID"]; then
     echo "Create Image from {$IMAGE_NAME}"
     sudo docker build "${FILE}" -t $IMAGE_NAME .
 fi
 
 # Get container ID and state of the Docker image
 CONTAINER_ID=$(sudo docker ps -q -a -f name="${APP_NAME}")
-if [-z $CONTAINER_ID]
-    then CONTAINER_STATUS=false
-    else CONTAINER_STATUS=$(docker inspect -f {{.State.Running}} $CONTAINER_ID)
-fi    
-
-# Set arguments for Docker
-if [ -z "$1" ];
-    then ARG="/bin/sh";
-    else ARG="$1";
+if [-z "$CONTAINER_ID"]; then
+    CONTAINER_STATUS=false
+else
+    CONTAINER_STATUS=$(docker inspect -f {{.State.Running}} $CONTAINER_ID)
 fi
 
-if [-z "$CONTAINER_ID"]
-    then
-    sudo docker run -it --rm --name=$APP_NAME -P "${PORT}" -network default \ 
-        -v ".":"${WORKDIR}" -w "${WORKDIR}" $IMAGE_NAME $ARG
+# Set arguments for Docker
+if [ -z "$1" ]; then
+    ARG="/bin/sh"
 else
-    if [CONTAINER_STATUS == "true"]
-        then
-        sudo docker exec -it $CONTAINER_ID $ARG 
+    ARG="$1"
+fi
+
+if [-z "$CONTAINER_ID"]; then
+    sudo docker run -it --rm --name=$APP_NAME -P "${PORT}" -network default \ 
+    -v ".":"${WORKDIR}" -w "${WORKDIR}" $IMAGE_NAME $ARG
+else
+    if [CONTAINER_STATUS == "true"]; then
+        sudo docker exec -it $CONTAINER_ID $ARG
     else
-        then
         sudo docker container start -ai $CONTAINER_ID
     fi
 fi
-
