@@ -1,52 +1,53 @@
 #!/bin/bash
+#Auther: Shazib Mustafa
+#Created: 31-01-2022
+#Description: The script is use to create image and container
 
-echo "something"
 echo "cloning a docker-share repo"
 git clone https://github.com/shazib96/Docker_share.git
-DIR=docker-share/Dockerfile
-container_name=helloworld
+FILE=docker_share/Dockerfile
+PORT= 5000:5000
+APP_NAME="Image_sh"
+IMAGE_NAME=$APP_NAME:0.1
+WORKDIR=/app
+#Check image exist
 
-sudo docker images -q
-	if ["$?" -eq 0]
-	echo "Image exist"
-	else
-	echo "Image not exist"
-if [ -e "$Dir" ]
+IMAGE_ID=$(sudo docker images -q "${APP_NAME}")
+
+if [-e "$FILE"]
 then
-printf "%s\n" "Dockerfile exist"
-result=$(sudo docker images -q helloworld )
-sudo docker inspect images > /dev/null 2>&1
-else
-echo "No dockerfile found"
+	echo"Dockerfile exist"
 fi
-contain=$(sudo docker ps -q )
-	if [ "$?" -eq 0 ]
-	then
-	echo "Container exist"
-	sudo docker rm -f helloworld
-	else
-	echo "Container not exist"
-
-if [ -n "$result" ]
+if [-z "$IMAGE_ID"]
 then
-echo "image exists"
-sudo docker rmi -f helloworld
-else
-echo "Image not exist"
+    echo "Create Image from {$IMAGE_NAME}"
+    sudo docker build "${FILE}" -t $IMAGE_NAME .
 fi
 
-#echo "build the docker image"
-#sudo docker build -t helloworld/shazib:0.1 .  
-#echo "built docker images and proceeding to delete existing container"
-#result=$( docker ps -q -f name=helloworld )
+# Get container ID and state of the Docker image
+CONTAINER_ID=$(sudo docker ps -q -a -f name="${APP_NAME}")
+if [-z "$CONTAINER_ID"]
+    then CONTAINER_STATUS=false
+    else CONTAINER_STATUS=$(docker inspect -f {{.State.Running}} $CONTAINER_ID)
+fi    
 
-#if [[ "$?" -eq 1 ]]; then
-#echo "Container not exist"
-#echo "Deploying the updated container"
-#sudo docker run -itd -p 3000:3000 -v .:/app --name helloworld 
-#sudo docker container rm -f helloworld
-#echo "Deleted the existing docker container"
-#else
-#echo "No such container"
-#fi
+# Set arguments for Docker
+if [ -z "$1" ];
+    then ARG="/bin/sh";
+    else ARG="$1";
+fi
+
+if [-z "$CONTAINER_ID"]
+    then
+    sudo docker run -it --rm --name=$APP_NAME -P "${PORT}" -network default \ 
+        -v ".":"${WORKDIR}" -w "${WORKDIR}" $IMAGE_NAME $ARG
+else
+    if [CONTAINER_STATUS == "true"]
+        then
+        sudo docker exec -it $CONTAINER_ID $ARG 
+    else
+        then
+        sudo docker container start -ai $CONTAINER_ID
+    fi
+fi
 
