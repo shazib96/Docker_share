@@ -3,9 +3,9 @@
 #Created: 31-01-2022
 #Description: The script is use to create image and container
 
-echo "cloning a docker-share repo"
-git clone https://github.com/shazib96/Docker_share.git
-FILE=docker_share/Dockerfile
+echo "cloning a Docker-share repo"
+rm -rf Docker_share && git clone https://github.com/shazib96/Docker_share.git
+FILE=Docker_share/Dockerfile
 PORT=5000:5000
 APP_NAME="Image_sh"
 IMAGE_NAME=$APP_NAME:0.1
