@@ -19,7 +19,7 @@ if [ -e "$FILE" ]; then
 fi
 if [ -z "$IMAGE_ID" ]; then
     echo "Create Image from {$IMAGE_NAME}"
-    docker build "${FILE}" --tag $IMAGE_NAME .
+    docker build -t $IMAGE_NAME .
 fi
 
 # Get container ID and state of the Docker image
