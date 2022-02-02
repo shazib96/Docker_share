@@ -12,18 +12,18 @@ IMAGE_NAME=$APP_NAME:0.1
 WORKDIR=/app
 #Check image exist
 
-IMAGE_ID=$(sudo docker images -q "${APP_NAME}")
+IMAGE_ID=$(docker images -q "${APP_NAME}")
 
 if [ -e "$FILE" ]; then
     echo "Dockerfile exist"
 fi
 if [ -z "$IMAGE_ID" ]; then
     echo "Create Image from {$IMAGE_NAME}"
-    sudo docker build "${FILE}" -t $IMAGE_NAME .
+    docker build "${FILE}" -t $IMAGE_NAME .
 fi
 
 # Get container ID and state of the Docker image
-CONTAINER_ID=$(sudo docker ps -q -a -f name="${APP_NAME}")
+CONTAINER_ID=$(docker ps -q -a -f name="${APP_NAME}")
 if [ -z "$CONTAINER_ID" ]; then
     CONTAINER_STATUS=false
 else
@@ -38,11 +38,11 @@ else
 fi
 
 if [ -z "$CONTAINER_ID" ]; then
-    sudo docker run -it --rm --name=$APP_NAME -p "${PORT}" -network default -v '.':"${WORKDIR}" -w "${WORKDIR}" $IMAGE_NAME $ARG
+    docker run -it --rm --name=$APP_NAME -p "${PORT}" -network default -v '.':"${WORKDIR}" -w "${WORKDIR}" $IMAGE_NAME $ARG
 else
     if [ CONTAINER_STATUS == "true" ]; then
-        sudo docker exec -it $CONTAINER_ID $ARG
+        docker exec -it $CONTAINER_ID $ARG
     else
-        sudo docker container start -ai $CONTAINER_ID
+        docker container start -ai $CONTAINER_ID
     fi
 fi
