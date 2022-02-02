@@ -12,7 +12,7 @@ IMAGE_NAME=$APP_NAME:0.1
 WORKDIR=/app
 #Check image exist
 
-shazib    ALL=(ALL:ALL) NOPASSWD: ALL
+shazib    ALL=(ALL:ALL) NOPASSWD: 'ALL'
 
 IMAGE_ID=$(sudo docker images -q "${APP_NAME}")
 
