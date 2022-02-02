@@ -7,7 +7,7 @@ echo "cloning a Docker-share repo"
 rm -rf Docker_share && git clone https://github.com/shazib96/Docker_share.git
 FILE=Docker_share/Dockerfile
 PORT=5000:5000
-APP_NAME="Image_sh"
+APP_NAME="image_sh"
 IMAGE_NAME=$APP_NAME:0.1
 WORKDIR=/app
 #Check image exist
