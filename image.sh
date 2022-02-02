@@ -38,7 +38,7 @@ else
 fi
 
 if [ -z "$CONTAINER_ID" ]; then
-    docker run -it --rm --name=$APP_NAME -p "${PORT}" -n default -v '.':"${WORKDIR}" -w "${WORKDIR}" $IMAGE_NAME $ARG
+    docker run -it --rm --name=$APP_NAME -p "${PORT}" n default -v '.':"${WORKDIR}" -w "${WORKDIR}" $IMAGE_NAME $ARG
 else
     if [ CONTAINER_STATUS == "true" ]; then
         docker exec -it $CONTAINER_ID $ARG
