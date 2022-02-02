@@ -15,7 +15,7 @@ WORKDIR=/app
 IMAGE_ID=$(sudo docker images -q "${APP_NAME}")
 
 if [ -e "$FILE" ]; then
-    echo"Dockerfile exist"
+    echo "Dockerfile exist"
 fi
 if [ -z "$IMAGE_ID" ]; then
     echo "Create Image from {$IMAGE_NAME}"
