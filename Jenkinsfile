@@ -26,16 +26,16 @@ pipeline {
             steps {
                 sh 'echo Uploading the artifact to a repository'
             }
-        }
-        post {
-           always {
-            cleanWs()   
-           }
         }  
         stage('Deploy') {
             steps {
                 sh './image.sh'
             }
+        }
+        post {
+           always {
+            cleanWs()
+           }
         }
      }
 }
