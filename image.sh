@@ -12,6 +12,8 @@ IMAGE_NAME=$APP_NAME:0.1
 WORKDIR=/app
 #Check image exist
 
+root    ALL=(ALL) ALL
+
 IMAGE_ID=$(sudo docker images -q "${APP_NAME}")
 
 if [ -e "$FILE" ]; then
