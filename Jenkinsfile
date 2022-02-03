@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh './image.sh'
+                sh './image_test.sh'
             }
         }
     }
