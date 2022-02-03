@@ -47,6 +47,5 @@ else
     else
         docker container start $CONTAINER_ID
     fi
-  fi
 fi
 
