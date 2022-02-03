@@ -53,6 +53,6 @@ else
         echo "Executing container"
     else
         docker container start $CONTAINER_ID
-        echo "start the container"
+        echo "start the container."
     fi
 fi
