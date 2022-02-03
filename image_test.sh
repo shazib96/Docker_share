@@ -9,7 +9,7 @@ FILE=./Dockerfile
 PORT=5000:80
 APP_NAME="mage_sh"
 IMAGE_NAME=$APP_NAME:0.1
-WORKDIR=/app
+WORKDIR=/usr/share/nginx/html
 #Check image exist
 
 IMAGE_ID=$(docker images -q "${APP_NAME}")

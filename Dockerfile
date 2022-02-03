@@ -1,4 +1,4 @@
 FROM nginx:alpine
 WORKDIR /app 
-ADD . /app
+ADD . /usr/share/nginx/html
 LABEL color=red
