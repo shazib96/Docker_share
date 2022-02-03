@@ -6,7 +6,7 @@
 echo "cloning a Docker-share repo"
 rm -rf Docker_share && git clone https://github.com/shazib96/Docker_share.git
 FILE=/Dockerfile
-PORT=5000:5000
+PORT=5000:80
 APP_NAME="mage_sh"
 IMAGE_NAME=$APP_NAME:0.1
 WORKDIR=/app
@@ -37,12 +37,16 @@ else
     ARG="$1"
 fi
 
-if [ -z "$CONTAINER_ID" ]; then
-    docker run -i --rm --name=$APP_NAME -p "${PORT}" -v /var/lib/jenkins/workspace/Share_docker/Docker_share:"${WORKDIR}" -w "${WORKDIR}" $IMAGE_NAME $ARG
+if [ -z $CONTAINER_ID ]; then
+    docker run -i --name=$APP_NAME -p "${PORT}" -v /var/lib/jenkins/workspace/Share_docker/Docker_share:"${WORKDIR}" -w "${WORKDIR}" $IMAGE_NAME $ARG
+elif [ -n "$CONTAINER_ID" ]; then
+      docker rm -f $CONTAINER_ID       
 else
     if [ CONTAINER_STATUS == "true" ]; then
         docker exec -it $CONTAINER_ID $ARG
     else
-        docker container start -ai $CONTAINER_ID
+        docker container start $CONTAINER_ID
     fi
+  fi
 fi
+
