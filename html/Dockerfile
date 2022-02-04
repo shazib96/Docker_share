@@ -1,4 +1,2 @@
-FROM nginx:alpine
-WORKDIR /app 
+FROM nginx:alpine 
 ADD . /usr/share/nginx/html
-LABEL color=red
