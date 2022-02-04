@@ -45,7 +45,7 @@ if [ -n "$CONTAINER_ID" ]; then
       echo "Removing container"       
 fi
 if [ $? -eq 0 ]; then
-    docker run -d --name=$APP_NAME -p "${PORT}" -v /var/lib/jenkins/workspace/Share_docker/Docker_share/html:"${WORKDIR}" -w "${WORKDIR}" $IMAGE_NAME
+    docker run -d --name=$APP_NAME -p "${PORT}" -v /var/lib/jenkins/workspace/Share_docker/Docker_share:"${WORKDIR}" -w "${WORKDIR}" $IMAGE_NAME
     echo "Creating container"
 else
     if [ CONTAINER_STATUS == "true" ]; then
