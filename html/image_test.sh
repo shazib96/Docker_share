@@ -4,7 +4,7 @@
 #Description: The script is use to create image and container
 
 echo "cloning a Docker-share repo"
-rm -rf Docker_share && git clone https://github.com/shazib96/Docker_share.git
+rm -rf Docker_share && git clone https://github.com/shazib96/Docker_share.git/html/
 FILE=./Dockerfile
 PORT=5000:80
 APP_NAME="mage_sh"
