@@ -5,4 +5,4 @@ services:
     ports:
       - "5000:80"
     volumes:
-      - ./hmtl:/usr/share/nginx/hmtl
+      - /var/lib/jenkins/workspace/Share_docker/Docker_share/html:/usr/share/nginx/hmtl
