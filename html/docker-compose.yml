@@ -3,6 +3,6 @@ services:
   web:
     build: .
     ports:
-      - "5001:80"
+      - "5000:80"
     volumes:
-      - .:/app
+      - ./hmtl:/usr/share/nginx/hmtl
